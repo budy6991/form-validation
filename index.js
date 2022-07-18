@@ -6,7 +6,6 @@ const confirmUserPassword = document.getElementById('confirmUserPassword')
 const submit = document.getElementById('submitButton')
 
 
-
 mail.addEventListener('blur', (e)=> {
     e.target.setCustomValidity('')
     if (!e.target.validity.valid) {
@@ -18,13 +17,15 @@ mail.addEventListener('blur', (e)=> {
     }
  })
 
- country.addEventListener('input', (e)=> {
+ country.addEventListener('blur', (e)=> {
     e.target.setCustomValidity('')
-    if (e.target.validity.ValueMissing) {
+    if (e.target.validity.valueMissing || e.target.value === '') {
+        console.log(e.target.validity.ValueMissing)
         e.target.setCustomValidity('Please input a country')
         e.target.reportValidity()
     }
     else  {
+        console.log(e.target.validity.ValueMissing)
         e.target.setCustomValidity('')
     }
  })
@@ -53,7 +54,8 @@ mail.addEventListener('blur', (e)=> {
  submit.onclick = () => {
      if (
          mail.validity.valid &&
-         !country.validity.ValueMissing &&
+         !country.validity.valueMissing &&
+         country.value != '' &&
          zipcode.validity.valid &&
          matchPasswords === true
 
