@@ -3,8 +3,7 @@ const country = document.getElementById('country')
 const zipcode = document.getElementById('zipcode')
 const userPassword = document.getElementById('userPassword')
 const confirmUserPassword = document.getElementById('confirmUserPassword')
-const submit = document.querySelector('.submit')
-
+const submit = document.getElementById('submitButton')
 
 
 mail.addEventListener('blur', (e)=> {
@@ -29,6 +28,8 @@ mail.addEventListener('blur', (e)=> {
     }
  })
 
+ 
+
 
  confirmUserPassword.addEventListener('blur', () => {
     confirmUserPassword.setCustomValidity('')
@@ -40,6 +41,22 @@ mail.addEventListener('blur', (e)=> {
         confirmUserPassword.setCustomValidity('')
      }
  })
+
+ submit.onclick = () => {
+     if (
+         mail.validity.valid &&
+         !country.validity.ValueMissing &&
+         zipcode.validity.valid 
+     ) {
+         alert('Hi five! You filled out correctly all the blanks!')
+     } 
+     
+     else {
+         alert('Some of the blanks do not meet the expected criteria')
+     }
+ }
+
+
 
 
 
