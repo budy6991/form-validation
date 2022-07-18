@@ -6,6 +6,7 @@ const confirmUserPassword = document.getElementById('confirmUserPassword')
 const submit = document.getElementById('submitButton')
 
 
+
 mail.addEventListener('blur', (e)=> {
     e.target.setCustomValidity('')
     if (!e.target.validity.valid) {
@@ -29,16 +30,23 @@ mail.addEventListener('blur', (e)=> {
  })
 
  
-
+ let matchPasswords = null
 
  confirmUserPassword.addEventListener('blur', () => {
     confirmUserPassword.setCustomValidity('')
      if (confirmUserPassword.value != userPassword.value) {
          confirmUserPassword.setCustomValidity('Passwords do not match')
          confirmUserPassword.reportValidity()
+         matchPasswords = false
+         console.log(matchPasswords)
+         return matchPasswords
+         
      }
      else if (confirmUserPassword.value === userPassword.value) {
         confirmUserPassword.setCustomValidity('')
+        matchPasswords = true
+        console.log(matchPasswords)
+        return matchPasswords
      }
  })
 
@@ -46,7 +54,9 @@ mail.addEventListener('blur', (e)=> {
      if (
          mail.validity.valid &&
          !country.validity.ValueMissing &&
-         zipcode.validity.valid 
+         zipcode.validity.valid &&
+         matchPasswords === true
+
      ) {
          alert('Hi five! You filled out correctly all the blanks!')
      } 
